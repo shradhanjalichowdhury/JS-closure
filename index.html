@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+     <h1>CLOSURE</h1>
+     <br>
+     <h2> 1."function counter(){<br>
+        var counter = 0;<br>
+    
+        function IncreaseCounter() {<br>
+            return counter += 1;<br>
+        };
+    
+        return IncreaseCounter;<br>
+    }
+    
+    var counter = counter();<br>
+    alert(counter());<br>
+    alert(counter());<br>
+    alert(counter());<br>
+    alert(counter());"</h2><br>
+    <p>Ans:-<br> 1<br>
+    2<br>
+3<br>
+4<br> Explain:-This is the outer function that creates a closure. It initializes a local variable counter with the value 0.<br>The counter() function returns the IncreaseCounter function. This means when counter() is called, it will return the inner function IncreaseCounter, which can be assigned to a variable.<br> After that it print the value one by one </p>
+<br>
+<h2>2."let count = 0;<br>
+(function () {<br>
+  if (count === 0) {<br>
+    let count = 1;<br>
+    console.log(count); // What is logged?<br>
+  }<br>
+  console.log(count); // What is logged?<br>
+})();"</h2>
+
+<p>Ans:<br> 1<br>
+        0 <br>
+    , there are two instances of the count variable, one declared in the global scope and the other declared inside the immediately-invoked function expression (IIFE). <br>count variable in the global scope with a value of 0.<br>Inside the IIFE, the local count variable is declared and initialized to 1.
+
+So, the first console.log(count); inside the IIFE will log: 1.
+Outside the IIFE, in the global scope, the original count variable remains unchanged and is still 0.
+
+So, the second console.log(count); outside the IIFE will log: 0.</p>
+<br>
+<h2>3."for (var i = 0; i < 3; i++) {<br>
+  setTimeout(function log() {<br>
+    console.log(i); // What is logged?<br>
+  }, 1000);
+}"</h2>
+<p>Ans: <br>3<br>
+3<br>
+3<br>
+ A anonymous functions  will execute at i=0 to i=3 but due to setTimout the loop will execute and at i=3 they<br> give output 3 times 3 </p>
+ <br>
+ <h2>4.Write a code to calculate area of a rectangle using inner function. In this case outer function should accept parameter length and inner function should accept parameter breadth.</h2>
+ <p>Ans: The Code are here<br>
+      function RectangleArea(length) {<br>
+  function calculateArea(breadth) {<br>
+    return length * breadth;<br>
+  }<br>
+
+  return calculateArea;<br>
+}
+var areaCalculator = RectangleArea(9);<br>
+var area = areaCalculator(6);<br>
+console.log("Area of the rectangle:", area);<br>
+ outPut: Area of the rectangle: 54<br>
+  Explain: The outer function RectangleArea takes the length parameter and returns the inner function calculateArea.<br><br>
+The inner function calculateArea takes the breadth parameter and calculates the area of the rectangle by multiplying the length and breadth.<br>
+When you call calculateRectangleArea(9), it returns the inner function calculateArea, which is stored in the variable areaCalculator.<br>
+ To calculate the area of the rectangle, you call the inner function areaCalculator(6) and pass the breadth parameter, which calculates and returns the area. The result is stored in the variable area.</p>
+ <h2>5.Take a variable in outer function and create an inner function to increase the counter every time it is called</h2>
+ <p>Ans:function counter() {<br>
+  let count = 0;<br> 
+  function increaseCount() {<br>
+    count++;<br> 
+    return count; <br>
+  }<br>
+  return increaseCount; <br>
+}
+const myCounter = counter();<br>
+console.log(myCounter());<br>
+console.log(myCounter()); <br>
+console.log(myCounter()); <br>
+console.log(myCounter()); <br>
+  output:<br>1<br>
+2<br>
+3<br>
+4<br>
+The outer function counter defines a local variable count initialized to 0 to keep track of the counter.<br>
+The inner function increaseCounter increments the count variable by 1 every time it is called and returns the updated value.<br>
+The counter function returns the increaseCounter function, making it accessible outside the function.<br>
+When you call counter(), it returns the increaseCounter function, which is stored in the variable myCounter.<br>
+You can then call myCounter() multiple times to increase the counter and see its updated value.<br></p>
+<br>
+<h2>6."Print Output<br>
+var a = 12;<br>
+(function () {<br>
+  alert(a);<br>
+})();2</h2>
+    <p>Ans:<br>12<br>
+    var a = 12;: This initializes the variable a with a value of 12 in the global scope.<br>
+     It creates an anonymous function that doesn't take any parameters and immediately executes it using the () at the end.<br>
+      alert(a);: The alert() function is used to display a message in an alert box. In this case, it will display the value of the variable a, which is 12<br></p>
+
+      <h2>7."var a = 10;<br>
+var x = (function () {<br>
+  var a = 12;<br>
+  return function () {<br>
+    alert(a);,<br>
+  };
+})();
+x();"</h2>
+<p>Ans:output:<br>12<br>
+in this question there are two varaible one in the global scope and other in the function scope and due to the IIFE function <br>the function variable call and return the output </p>
+
+<h2>8."var globalVar = ""xyz"";<br>
+
+(function outerFunc(outerArg) {<br>
+    var outerVar = 'a';<br>
+    
+    (function innerFunc(innerArg) {<br>
+    var innerVar = 'b';<br>
+    
+    console.log(<br>
+        ""outerArg = "" + outerArg + ""\n"" +<br>
+        ""innerArg = "" + innerArg + ""\n"" +<br>
+        ""outerVar = "" + outerVar + ""\n"" +<br>
+        ""innerVar = "" + innerVar + ""\n"" +<br>
+        ""globalVar = "" + globalVar);<br>
+    
+    })(456);<br>
+})(123);"</h2>
+<p>Ans: outerArg = 123<br>
+innerArg = 456<br>
+outerVar = a<br>
+innerVar = b<br>
+globalVar = xyz<br>
+Explain:Declares and initializes a variable globalVar with the string value "xyz" in the global scope.<br>
+(function outerFunc(outerArg) { ... })(123);: The outer IIFE represents the outerFunc, which takes a parameter outerArg. When this IIFE is invoked with the argument 123, it runs the following code block.
+ The code run line by line and print the value.</p>
+</body>
+</html>
